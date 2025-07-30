@@ -94,10 +94,10 @@ public class Login_Banco {
 
         switch(menu) {
             case 1: 
-                verSaldoNaConta();
+                verSaldoNaConta(scan);
                 break;
             case 2:
-                extratoDaConta();
+                extratoDaConta(scan);
                 break;
             case 3: 
                 fazerDeposito(scan);
@@ -127,12 +127,25 @@ public class Login_Banco {
         }
     }
 
-    public static void verSaldoNaConta() {
-        System.out.printf("Seu saldo atualmente é: %.2.fR$\n", saldo);
+    public static void verSaldoNaConta(Scanner scan) {
+        System.out.printf("Seu saldo atualmente é: %.2fR$\n", saldo);
+
+        System.out.println("Deseja voltar para o menu: (S/n)");
+        String voltar = scan.nextLine();
+        if(voltar.equalsIgnoreCase("S")) {
+            entrarNaConta(scan);
+        }
     }
-    public static void extratoDaConta() {
+    public static void extratoDaConta(Scanner scan) {
         if(extrato.isEmpty()){
             System.out.println("Extrato vazio. Nenhuma movimentação registrada.");
+
+            System.out.println("Deseja voltar para o menu: (S/n)");
+            String voltar = scan.nextLine();
+            if(voltar.equalsIgnoreCase("S")) {
+                entrarNaConta(scan);
+            }
+
         } else {
             System.out.println("=====EXTRATO=DA=CONTA=====");
             for(String operacao : extrato) {
@@ -149,7 +162,7 @@ public class Login_Banco {
             String registro = String.format("Depósito de R$ %.2f.", depositar);
             extrato.add(registro);
             System.out.println("Depósito realizado com sucesso.");
-            verSaldoNaConta();
+            verSaldoNaConta(scan);
         } else {
             System.out.println("Valor inválido para depósito");
         }
