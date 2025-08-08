@@ -41,7 +41,7 @@ public class Login_Banco {
                             System.out.println("Login realizado com sucesso.");
                             entrarNaConta(scan);
                         } else {
-                            System.out.println("Tente mais uma vez!");
+                            System.out.println("Você tem três tentativas. Sua conta será bloqueada!");
                             tentativa++;
                         }
 
@@ -120,10 +120,10 @@ public class Login_Banco {
            // case 9:
            //     investimento(scan);
            //     break;
-            //case 10:
-            //     continuar = false;
-            //            System.out.println("Saindo do aplicativo.");
-            //            break;
+            case 10:
+                continuar = false;
+                    System.out.println("Saindo do aplicativo.");
+                    break;
         }
     }
 
@@ -138,18 +138,17 @@ public class Login_Banco {
     }
     public static void extratoDaConta(Scanner scan) {
         if(extrato.isEmpty()){
-            System.out.println("Extrato vazio. Nenhuma movimentação registrada.");
-
-            System.out.println("Deseja voltar para o menu: (S/n)");
-            String voltar = scan.nextLine();
-            if(voltar.equalsIgnoreCase("S")) {
-                entrarNaConta(scan);
-            }
+            System.out.println("Extrato vazio. Nenhuma movimentação registrada.");  
 
         } else {
             System.out.println("=====EXTRATO=DA=CONTA=====");
             for(String operacao : extrato) {
                 System.out.println(operacao);
+            }
+            System.out.println("Deseja voltar para o menu: (S/n)");
+            String voltar = scan.nextLine();
+            if(voltar.equalsIgnoreCase("S")) {
+                entrarNaConta(scan);
             }
         }
     }
